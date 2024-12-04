@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+
+<br><br><br>
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>image</th>
+                    <th>product name</th>
+                    <th>slug</th>
+                    <th>description</th>
+                    <th>price</th>
+                    <th>stock</th>
+                    <th>is_available</th>
+                    <th>category</th>
+                    <th>sku</th>
+                    <th>priority</th>                         
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            {% if single_product.images %}
+                            <img src="{{ single_product.images.url }}" alt="{{ single_product.product_name }}" width="100">
+                            {% else %}
+                            No Image
+                            {% endif %}
+                        </td>
+                        <td>{{ single_product.product_name }}</td>
+                        <td>{{ single_product.slug }}</td>
+                        <td>{{ single_product.description }}</td>
+                        <td>{{ single_product.price }}</td>
+                        <td>{{ single_product.stock }}</td>
+                        <td>{{ single_product.is_available }}</td>
+                        <td>{{ single_product.category.category_name }}</td>
+                        <td>{{ single_product.sku }}</td>
+                        <td>{{ single_product.priority }}</td>                    
+                    </tr>
+                </tbody>
+            </table>
+            <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button"><a href="{% url 'add_cart' single_product.id %}">add cart</a></button>
+
+        </div>
+
+{% endblock %}  

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<br><br><br><br><br><br><br><br>
+   {% for i in m%}
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="container">
+            <div class="row">
+                 <div class="col-md-12 col-lg-6">
+                     <div class="row">
+                        <div class="form-item">
+                            <label for="">category_name</label>
+                            <input type="text" class="form-control" name="category_name" value="{{ i.category_name }}" id="category_name">
+                        </div>
+                        
+                        <div class="form-item">
+                            <label for="">slug</label>
+                            <input type="text" class="form-control" name="slug" id="slug" value="{{ i.slug }}">
+                        </div>
+
+                        <div class="form-item">
+                            <label for="">description</label>
+                            <input type="text" class="form-control" name="description" value="{{ i.description }}">
+                        </div>
+
+                        <div class="form-item">
+                        <label for="">cat_image</label>
+                        {% if i.cat_image %}
+                                <img src="{{ i.cat_image.url }}" alt="{{ i.category_name }}" width="100px">
+                        {% endif %}
+                        <input type="file" class="form-control" name="cat_image" id="cat_image" width="100px">
+                        </div>
+                     </div>
+                     <br><br>
+                     <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="submit">Add</button>
+                    </div>
+            </div>
+        </div>
+    </form>
+   {% endfor %}
+
+{% endblock %}
+</body>
+</html>

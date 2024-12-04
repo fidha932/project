@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<br><br><br><br><br><br><br>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">PRODUCT DETAILS</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <tr>
+                    <th>product name</th>
+                    <th>slug</th>
+                    <th>description</th>
+                    <th>price</th>
+                    <th>stock</th>
+                    <th>is_available</th>
+                    <th>category</th>
+                    <th>image</th>
+                    <th>sku</th>
+                    <th>priority</th>
+                    <th>edit</th>
+                    <th>delete</th>
+                </tr>
+                {% for i in m %}
+                <tr>
+                    <td>{{ i.product_name }}</td>
+                    <td>{{ i.slug }}</td>
+                    <td>{{ i.description }}</td>
+                    <td>{{ i.price }}</td>
+                    <td>{{ i.stock }}</td>
+                    <td>{{ i.is_available }}</td>
+                    <td>{{ i.category.category_name }}</td>
+                    <td>
+                        {% if i.images %}
+                        <img src="{{ i.images.url }}" alt="{{ i.product_name }}" width="100">
+                        {% else %}
+                        No Image
+                        {% endif %}
+                    </td>
+                    <td>{{ i.sku }}</td>
+                    <td>{{ i.priority }}</td>
+                    <td>
+                        <a href="{% url 'editproduct' i.id %}">edit</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'deleteproduct' i.id %}">delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+    
+            </table>
+        </div>
+        <br><br><br>
+    </div>
+</div>
+</div>
+
+{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products</title>
+</head>
+<body>
+    <table border="1">
+            <tr>
+                <th>product name</th>
+                <th>slug</th>
+                <th>description</th>
+                <th>price</th>
+                <th>stock</th>
+                <th>is_available</th>
+                <th>category</th>
+                <th>image</th>
+                <th>sku</th>
+                <th>priority</th>
+                <th>edit</th>
+                <th>delete</th>
+            </tr>
+            {% for i in m %}
+            <tr>
+                <td>{{ i.product_name }}</td>
+                <td>{{ i.slug }}</td>
+                <td>{{ i.description }}</td>
+                <td>{{ i.price }}</td>
+                <td>{{ i.stock }}</td>
+                <td>{{ i.is_available }}</td>
+                <td>{{ i.category.category_name }}</td>
+                <td>
+                    {% if i.images %}
+                    <img src="{{ i.images.url }}" alt="{{ i.product_name }}" width="100">
+                    {% else %}
+                    No Image
+                    {% endif %}
+                </td>
+                <td>{{ i.sku }}</td>
+                <td>{{ i.priority }}</td>
+                <td>
+                    <a href="{% url 'editproduct' i.id %}">edit</a>
+                </td>
+                <td>
+                    <a href="{% url 'deleteproduct' i.id %}">delete</a>
+                </td>
+        </tr>
+            {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<br><br><br><br><br><br><br><br>
+   {% for i in m%}
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="container">
+            <div class="row">
+                 <div class="col-md-12 col-lg-6">
+                     <div class="row">
+                        <div class="form-item">
+                            <label for="">Product Name</label>
+                            <input type="text" class="form-control" id="product_name" name="product_name" value="{{ i.product_name }}" required maxlength="200">
+                        </div>
+                        <div class="form-item">
+                            <label for="">Slug</label>
+                            <input type="text" class="form-control" id="slug" name="slug" value="{{ i.slug }}" required maxlength="200" >
+                        </div>
+                        <div class="form-item">
+                            <label for="">Description</label>
+                            <input type="text" class="form-control" id="description" name="description" maxlength="1000" value="{{i.description }}">
+                        </div>
+                        <div class="form-item">
+                            <label for="">Price</label>
+                            <input type="text" class="form-control" id="price" name="price" value="{{i.price }}" required >
+                        </div>
+                        <br><br><br>
+                        <div class="form-item">
+                        <label for="">image</label>
+                        {% if i.images %}
+                            <img src="{{ i.images.url }}" alt="{{ i.product_name }}" width="100">
+                        {% endif %}
+                        <input type="file" id="images" name="images">
+                        </div>
+                        <div class="form-item">
+                            <label for="">Stock</label>
+                            <input type="text" class="form-control" id="stock" name="stock" value="{{i.stock }}" required>
+                        </div>
+                        <br><br>
+                        <div class="form-item">
+                            <label for="">Is_available</label>
+                            <input type="checkbox" id="is_available" name="is_available" {% if i.is_avilable %} checked {% endif %}>
+                        </div>
+                        <br>
+                        <label for="category">category</label>
+                        <select id="category" class="form-control" name="category" required>
+                        {% for category in categories %}
+                        <option value="{{ category.id }}" {% if category.id == i.category.id %} selected {% endif %}>
+                            {{ category.category_name }}
+                        </option>
+                        {% endfor %}
+                        </select><br><br>
+
+                        <div class="form-item">
+                            <label for="">Sku</label>
+                            <input type="text" class="form-control" id="sku" name="sku" value="{{ i.sku }}" required maxlength="100" >
+                        </div>
+
+                        <div class="form-item">
+                            <label for="">Priority</label>
+                            <input type="text" class="form-control" id="priority" name="priority" value="{{i.priority }}" required >
+                        </div>
+                    </div>
+                    <br><br>
+                    <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="submit">Add</button>
+                 </div>
+            </div> 
+        </div>  
+        {% endfor %}    
+{% endblock%}                  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% for i in m %}
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token%}
+        <label for="product_name">product_name</label>
+        <input type="text" id="product_name" name="product_name" value="{{ i.product_name }}" required maxlength="200">
+        <br><br>
+
+        <label for="slug">slug</label>
+        <input type="text" id="slug" name="slug" value="{{ i.slug }}" required maxlength="200">
+        <br><br>
+
+        <label for="description">description</label>
+        <textarea id="description" name="description" maxlength="1000">{{i.description }}</textarea>
+        <br><br>
+
+        <label for="price">price</label>
+        <input type="number" id="price" name="price" value="{{i.price }}" required>
+        <br><br>
+
+        <label for="images">image</label>
+        {% if i.images %}
+            <img src="{{ i.images.url }}" alt="{{ i.product_name }}" width="100">
+        {% endif %}
+        <input type="file" id="images" name="images">
+        <br><br>
+
+        <label for="stock">stock</label>
+        <input type="number" id="stock" name="stock" value="{{i.stock }}" required>
+        <br><br>
+
+        <label for="is_available">is_available</label>
+        <input type="checkbox" id="is_available" name="is_available" {% if i.is_avilable %} checked {% endif %}>
+        <br><br>
+        
+        <label for="category">category</label>
+        <select id="category" name="category" required>
+        {% for category in categories %}
+        <option value="{{ category.id }}" {% if category.id == i.category.id %} selected {% endif %}>
+            {{ category.category_name }}
+        </option>
+        {% endfor %}
+        </select><br><br>
+
+
+        <label for="sku">sku</label>
+        <input type="text" id="sku" name="sku" value="{{ i.sku }}" required maxlength="100">
+        <br><br>
+
+        <label for="priority">priority</label>
+        <input type="number" id="priority" name="priority" value="{{i.priority }}" required><br><br>
+
+        
+        <input type="submit" value="Update">
+    </form>
+    {% endfor %}
+</body>
+</html>
+    </form>
+</body>
+</html>

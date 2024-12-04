@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+<br><br><br><br><br><br><br><br><br><br><br>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2">  
+                </div>
+    
+                <div class="col-lg-8">
+    
+        <input type="text" name="username" class="form-control" placeholder="username">
+        <br>
+        <input type="password" name="password" class="form-control" placeholder="password">
+        <br>
+        <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="submit">Login</button>
+    </form>
+</div>
+</div>
+<div class="col-lg-2">  
+</div>
+</div>
+    <br>
+    <br><br><br><br><br>
+<br>
+{% endblock %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="">username</label>
+        <input type="text" name="username">
+        <br><br>
+
+        <label for="">password</label>
+        <input type="password" name="password">
+        <br><br>
+
+        <input type="submit" value="login" id="">
+    </form>
+</body>
+</html>
